@@ -10,6 +10,11 @@ import UIKit
 
 class FriendsTableViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var `var`: UITableView!
+    
+    
     override func viewDidLoad() {
     super.viewDidLoad()
         

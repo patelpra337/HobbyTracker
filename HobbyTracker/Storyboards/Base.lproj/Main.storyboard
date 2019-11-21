@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="103" id="Age-PV-eOi">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="103" id="Age-PV-eOi" customClass="FriendTableViewCell" customModule="HobbyTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Age-PV-eOi" id="qgt-t7-1IY">
@@ -61,6 +61,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="hobbiesLabel" destination="4yr-8g-1GC" id="bNc-Ks-uHq"/>
+                                            <outlet property="hometownLabel" destination="cZB-xS-s7P" id="RM6-zj-21a"/>
+                                            <outlet property="nameLabel" destination="Tkc-be-Etc" id="KcF-PM-pdC"/>
                                             <segue destination="rhl-O4-dV2" kind="show" identifier="ShowFriendDetailSegue" id="vPO-qq-NjQ"/>
                                         </connections>
                                     </tableViewCell>
@@ -83,15 +86,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="var" destination="Jj1-o1-y1c" id="7MK-go-cSb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="689.85507246376812" y="138.61607142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--Friend Detail View Controller-->
         <scene sceneID="FSa-1i-XLf">
             <objects>
-                <viewController id="rhl-O4-dV2" sceneMemberID="viewController">
+                <viewController id="rhl-O4-dV2" customClass="FriendDetailViewController" customModule="HobbyTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qcx-a3-W8i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,15 +157,20 @@
                         <viewLayoutGuide key="safeArea" id="Yyg-TK-yWt"/>
                     </view>
                     <navigationItem key="navigationItem" id="7do-IM-LEI"/>
+                    <connections>
+                        <outlet property="hobbiesLabel" destination="d5m-Gl-SYG" id="bca-EL-18O"/>
+                        <outlet property="hometownLabel" destination="JmK-g0-7Q6" id="T4h-gB-dDF"/>
+                        <outlet property="nameLabel" destination="jwZ-dy-JVP" id="wQg-zW-LaV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgC-Jx-tPr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1528.985507246377" y="476.78571428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Friend View Controller-->
         <scene sceneID="jF8-5w-Uhw">
             <objects>
-                <viewController id="xRU-pm-RGR" sceneMemberID="viewController">
+                <viewController id="xRU-pm-RGR" customClass="AddFriendViewController" customModule="HobbyTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QVh-Sj-Nsi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,9 +178,17 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwQ-rC-U5d">
                                 <rect key="frame" x="0.0" y="759" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Cancel" id="GqJ-bm-DFi"/>
+                                    <barButtonItem title="Cancel" id="GqJ-bm-DFi">
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="xRU-pm-RGR" id="13l-h5-g0M"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ICY-e1-y1Z"/>
-                                    <barButtonItem title="Save" id="XTM-JJ-qt0"/>
+                                    <barButtonItem title="Save" id="XTM-JJ-qt0">
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="xRU-pm-RGR" id="qM5-7W-8BK"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SYL-SX-3eJ">
@@ -226,6 +245,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rJi-Wu-UyF"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButtonTapped" destination="nwQ-rC-U5d" id="I03-5Y-ovY"/>
+                        <outlet property="hobby1TextField" destination="C4d-mD-wVg" id="ULi-80-ZLn"/>
+                        <outlet property="hobby2TextField" destination="hsd-Cm-mAQ" id="YFo-9T-Dgs"/>
+                        <outlet property="hobby3TextField" destination="lgD-7G-pB3" id="IiS-qr-v5h"/>
+                        <outlet property="hometownTextField" destination="PRO-6e-huh" id="f0T-l6-K83"/>
+                        <outlet property="nameTextField" destination="hlM-8B-gpj" id="8WE-E0-9Pu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvw-Z6-dRR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
